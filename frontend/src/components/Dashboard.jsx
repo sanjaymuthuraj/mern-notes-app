@@ -72,7 +72,6 @@ export default function Dashboard() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm('Delete this note?')) return;
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}/notes/${id}`);
       setNotes(notes.filter(n => n._id !== id));

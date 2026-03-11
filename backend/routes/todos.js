@@ -45,7 +45,7 @@ router.put('/:id', auth, async (req, res) => {
     todo = await Todo.findByIdAndUpdate(
       req.params.id,
       { $set: { title, completed } },
-      { new: true }
+      { returnDocument: 'after' }
     );
     res.json(todo);
   } catch (err) {

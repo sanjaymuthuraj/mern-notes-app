@@ -47,7 +47,7 @@ router.put('/:id', auth, async (req, res) => {
     note = await Note.findByIdAndUpdate(
       req.params.id,
       { $set: { title, content, color } },
-      { new: true }
+      { returnDocument: 'after' }
     );
     res.json(note);
   } catch (err) {
