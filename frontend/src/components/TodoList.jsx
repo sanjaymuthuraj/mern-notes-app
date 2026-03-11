@@ -121,7 +121,7 @@ export default function TodoList() {
               
               <button 
                 onClick={() => handleDelete(todo._id)}
-                className="opacity-0 group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"
+                className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"
                 title="Delete Task"
               >
                 <Trash2 size={20} />

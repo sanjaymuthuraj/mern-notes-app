@@ -186,7 +186,7 @@ export default function Dashboard() {
               <div className="mt-6 flex items-center justify-between text-xs text-slate-400 font-medium">
                 <span>{format(new Date(note.createdAt), 'MMM dd, yyyy')}</span>
                 
-                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity absolute top-4 right-4 bg-white/50 backdrop-blur-sm rounded-lg p-1">
+                <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity absolute top-4 right-4 bg-white/50 backdrop-blur-sm rounded-lg p-1">
                   <button 
                     onClick={() => handleEdit(note)}
                     className="p-2 text-slate-600 hover:text-primary-600 hover:bg-white rounded-md transition-colors"

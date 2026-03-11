@@ -20,7 +20,7 @@ export default function Navbar() {
             <div className="bg-primary-600 p-2 rounded-lg text-white">
               <NotebookIcon size={24} />
             </div>
-            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-700 to-primary-500">
+            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-700 to-primary-500 hidden xs:block sm:block">
               MERN Notes
             </span>
           </div>
@@ -34,24 +34,27 @@ export default function Navbar() {
                   </div>
                   <Link 
                     to="/" 
-                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+                    className="flex items-center gap-2 p-2 sm:px-3 sm:py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+                    title="Notes"
                   >
-                    <FileText size={16} />
-                    <span>Notes</span>
+                    <FileText size={20} className="sm:w-[16px] sm:h-[16px]" />
+                    <span className="hidden sm:inline">Notes</span>
                   </Link>
                   <Link 
                     to="/todos" 
-                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+                    className="flex items-center gap-2 p-2 sm:px-3 sm:py-2 text-sm font-medium text-slate-600 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
+                    title="Todos"
                   >
-                    <ListTodo size={16} />
-                    <span>Todos</span>
+                    <ListTodo size={20} className="sm:w-[16px] sm:h-[16px]" />
+                    <span className="hidden sm:inline">Todos</span>
                   </Link>
                   <button 
                     onClick={handleLogout}
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                    className="flex items-center gap-2 p-2 sm:px-4 sm:py-2 text-sm font-medium text-slate-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                    title="Logout"
                   >
-                    <LogOut size={16} />
-                    <span>Logout</span>
+                    <LogOut size={20} className="sm:w-[16px] sm:h-[16px]" />
+                    <span className="hidden sm:inline">Logout</span>
                   </button>
                 </div>
               </>
