@@ -6,6 +6,7 @@ export default function TodoList() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState('');
+  const [deletingId, setDeletingId] = useState(null);
 
   const fetchTodos = async () => {
     try {
@@ -47,11 +48,16 @@ export default function TodoList() {
   };
 
   const handleDelete = async (id) => {
+    setDeletingId(id);
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}/todos/${id}`);
-      setTodos(todos.filter(t => t._id !== id));
+      setTimeout(() => {
+        setTodos(prevTodos => prevTodos.filter(t => t._id !== id));
+        setDeletingId(null);
+      }, 300);
     } catch (err) {
       console.error('Error deleting todo', err);
+      setDeletingId(null);
     }
   };
 
@@ -102,6 +108,8 @@ export default function TodoList() {
             <div 
               key={todo._id} 
               className={`group flex items-center justify-between p-4 rounded-2xl border transition-all duration-300 ${
+                deletingId === todo._id ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'
+              } ${
                 todo.completed 
                   ? 'bg-slate-50/80 border-slate-200/50' 
                   : 'bg-white/80 border-slate-200 shadow-sm hover:shadow-md'

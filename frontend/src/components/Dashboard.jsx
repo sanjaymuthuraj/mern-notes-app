@@ -18,6 +18,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
   
   // Form State
   const [title, setTitle] = useState('');
@@ -72,11 +73,17 @@ export default function Dashboard() {
   };
 
   const handleDelete = async (id) => {
+    setDeletingId(id);
     try {
       await axios.delete(`${import.meta.env.VITE_API_URL}/notes/${id}`);
-      setNotes(notes.filter(n => n._id !== id));
+      // Wait for CSS transition to visually fade out before removing from state
+      setTimeout(() => {
+        setNotes(prevNotes => prevNotes.filter(n => n._id !== id));
+        setDeletingId(null);
+      }, 300);
     } catch (err) {
       console.error('Error deleting note', err);
+      setDeletingId(null);
     }
   };
 
@@ -174,7 +181,7 @@ export default function Dashboard() {
           {notes.map(note => (
             <div 
               key={note._id} 
-              className="group relative flex flex-col p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-200/50"
+              className={`group relative flex flex-col p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-200/50 ${deletingId === note._id ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}`}
               style={{ backgroundColor: note.color || '#ffffff' }}
             >
               <div className="flex-1">
